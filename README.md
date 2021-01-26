@@ -1,8 +1,10 @@
 # MyTodo-Using-Django
 * This is a Simple Todo Web App using Django where we can add some tasks, mark as complete and we can delete tasks *
 
+# Deployed Project Link - 
+> [Link of Deployed Project on Heroku - Click Here](https://mytodo2021.herokuapp.com/)
 
-
+![Demo Image](https://github.com/rahulmis/MyTodo-Using-Django/blob/main/demo1.png)
 
 
 ## You have to follow following steps to run this project
