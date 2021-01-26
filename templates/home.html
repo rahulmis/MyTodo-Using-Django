@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+  .list-group-item {
+              border-radius: 14px;
+              background: blue;
+              color: white;
+              transition: 1s;
+              border-color: green;
+              opacity: 1;
+        }
+  .list-group-item:first-child {
+              border-top-left-radius: 14px;
+              border-top-right-radius: 14px;
+        }
+  .list-group-item:last-child {
+              border-bottom-left-radius: 14px;
+              border-bottom-right-radius: 14px;
+        }
+
+  .list-group-item:hover {
+              border-radius: 20px;
+              background: orange;
+        }
+
+
+
+    </style>
+
+    <title>My Todo App</title>
+</head>
+<body>
+
+<div class="text-center">
+    <div class="container">
+        <h1 class="display-4">My Personal ToDo</h1>
+        <p class="lead">This is MY First Django End to End Project.</p>
+    </div>
+</div>
+
+<form method="post">
+    {% csrf_token %}
+    <div class="container mt-5">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control mr-2" id="title" name="title" aria-label="" aria-describedby="basic-addon1"
+                   placeholder="Enter Your Title">
+            <button class="btn btn-outline-success" type="submit">Add</button>
+        </div>
+    </div>
+</form>
+
+<div class="container">
+    <ul class="list-group">
+        {% for i in data %}
+        <li class="list-group-item list-group-item-primary mt-2">
+            {% if i.complete %}
+            <strike>{{i.title}}</strike>
+            {% elif i.complete != 'True' %}
+            {{i.title}}
+            {% endif %}
+
+            <a href="{% url 'Delete' i.id %}">
+                <button type="button" class="btn btn-danger float-right">Delete</button>
+            </a>
+            {% if i.complete %}
+            <a href="{% url 'UnComplete' i.id %}">
+                <button type="button" class="btn btn-success float-right mr-2">Completed</button>
+            </a>
+            {% elif i.complete != 'True' %}
+            <a href="{% url 'Complete' i.id %}">
+                <button type="button" class="btn btn-success float-right mr-2">Complete</button>
+            </a>
+            {% endif %}
+
+
+        </li>
+        {% endfor %}
+    </ul>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>
